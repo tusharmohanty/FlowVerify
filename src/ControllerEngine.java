@@ -181,7 +181,34 @@ public class ControllerEngine {
         return  returnObj;
     }
 
+    private void getNextPayrollTask(TasksBean currentNode, List<TasksBean> nodeList, boolean mode){
+        List<TasksBean> nextNodes = getNextNodes(currentNode,mode);
+        for(int tempCount =0; tempCount < nextNodes.size();tempCount ++){
+            TasksBean node = nextNodes.get(tempCount);
+            if(node.isPayrollTask()){
+                nodeList.add(node);
+            }
+            else{
+                getNextPayrollTask(node,nodeList,mode);
+            }
+        }
+    }
 
+    public List<String> getAvailableActions(TasksBean currentNode){
+        List<String> returnObj = new ArrayList<String>();
+        List<TasksBean> nextNodes;
+        if(currentNode.isPayrollTask()){ // if the current node is a payroll task then look for the next payroll task and then only compute the action matrix
+            nextNodes= new ArrayList<TasksBean>();
+            getNextPayrollTask(currentNode,nextNodes,true);
+        }
+        else{
+            nextNodes = getNextNodes(currentNode,true);
+        }
+        for(int tempCount=0; tempCount < nextNodes.size();tempCount ++){
+            System.out.println("Evaluating next " + nextNodes.get(tempCount).getChecklistName());
+        }
+        return  returnObj;
+    }
     private void getNextEligibleTaskToStart(TasksBean currentNode, boolean forwardMode, List<TasksBean> nodeList){
         List<TasksBean> nextNodes = getNextNodes(currentNode,forwardMode);
         for(int tempCount=0; tempCount < nextNodes.size();tempCount ++){

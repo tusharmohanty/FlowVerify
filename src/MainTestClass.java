@@ -21,8 +21,8 @@ public class MainTestClass {
         ControllerEngine controllerObj = new ControllerEngine(taskList,flowTaskInteractionsList,true);
         controllerObj.traverse(true);
 //        System.out.println(controllerObj.isPrereqComplete(controllerObj.getTask(005l)));
-        controllerObj.performVerifyAction(controllerObj.getTask(002l));
-
+        //controllerObj.performVerifyAction(controllerObj.getTask(002l));
+        controllerObj.getAvailableActions(controllerObj.getTask(003l));
     }
 
 

@@ -1,0 +1,8 @@
+<ActionMatrix>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus></CurrentNodeStatus>
+        <SucceedingNodeStatus></SucceedingNodeStatus>
+        <AvailableAction></AvailableAction>
+    </Entry>
+</ActionMatrix>
