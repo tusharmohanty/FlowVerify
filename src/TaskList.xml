@@ -1,0 +1,59 @@
+<FlowTaskInstances>
+    <FlowTaskInstance>>
+        <FlowTaskId>006</FlowTaskId>
+        <BaseFlowTaskId>006</BaseFlowTaskId>
+        <BaseTaskName>CALCULATE_PREPAYMENTS</BaseTaskName>
+        <ChecklistName>Calculate Prepayments</ChecklistName>
+        <PayrollProcessingFlag>Y</PayrollProcessingFlag>
+        <Status>NOT_STARTED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>002</FlowTaskId>
+        <BaseFlowTaskId>002</BaseFlowTaskId>
+        <BaseTaskName>CALCULATE_PAYROLL</BaseTaskName>
+        <ChecklistName>Calculate Payroll</ChecklistName>
+        <PayrollProcessingFlag>Y</PayrollProcessingFlag>
+        <VerificationFlag>N</VerificationFlag>
+        <Status>COMPLETED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>003</FlowTaskId>
+        <BaseFlowTaskId>003</BaseFlowTaskId>
+        <BaseTaskName>RUN_GROSS_TO_NET_REPORT</BaseTaskName>
+        <ChecklistName>Run Gross To Net report</ChecklistName>
+        <PayrollProcessingFlag>N</PayrollProcessingFlag>
+        <Status>NOT_STARTED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>004</FlowTaskId>
+        <BaseFlowTaskId>004</BaseFlowTaskId>
+        <BaseTaskName>RUN_BALANCE_EXCEPTION_REPORT</BaseTaskName>
+        <ChecklistName>Run Balance Exception report</ChecklistName>
+        <PayrollProcessingFlag>N</PayrollProcessingFlag>
+        <Status>COMPLETED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>005</FlowTaskId>
+        <BaseFlowTaskId>005</BaseFlowTaskId>
+        <BaseTaskName>RUN_CUSTOM_EXTRACT</BaseTaskName>
+        <ChecklistName>Run Custom Extract</ChecklistName>
+        <PayrollProcessingFlag>N</PayrollProcessingFlag>
+        <Status>SKIPPED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>001</FlowTaskId>
+        <BaseFlowTaskId>001</BaseFlowTaskId>
+        <BaseTaskName>START_FLOW</BaseTaskName>
+        <ChecklistName>Start Flow</ChecklistName>
+        <PayrollProcessingFlag>N</PayrollProcessingFlag>
+        <Status>COMPLETED</Status>
+    </FlowTaskInstance>>
+    <FlowTaskInstance>>
+        <FlowTaskId>007</FlowTaskId>
+        <BaseFlowTaskId>007</BaseFlowTaskId>
+        <BaseTaskName>END_FLOW</BaseTaskName>
+        <ChecklistName>End Flow</ChecklistName>
+        <PayrollProcessingFlag>N</PayrollProcessingFlag>
+        <Status></Status>
+    </FlowTaskInstance>>
+</FlowTaskInstances>
