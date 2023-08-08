@@ -1,13 +1,18 @@
+import beans.ActionMatrixBean;
 import beans.FlowTaskInteractions;
 import beans.TasksBean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ControllerEngine {
 
     private List<TasksBean> taskList;
     private List<FlowTaskInteractions> flowTaskInteractionsList;
+
+    private Map<String,List<ActionMatrixBean>> actionMatrix = HashMap.newHashMap(5);
     private boolean isPayrollProcessingEnabled;
     public ControllerEngine(List<TasksBean> taskList,
                             List<FlowTaskInteractions> flowTaskInteractionsList,
@@ -15,8 +20,23 @@ public class ControllerEngine {
         this.taskList = taskList;
         this.flowTaskInteractionsList = flowTaskInteractionsList;
         this.isPayrollProcessingEnabled = payrollprocessingFlag;
+        LoadData.loadActionMatrix(actionMatrix);
 
     }
+
+
+
+    // Production code constructor
+    public ControllerEngine(Long baseFlowTaskId,
+                            Long baseFlowId,
+                            Long flowTaskInstanceId,
+                            Long ldgId){
+        this.isPayrollProcessingEnabled = true;
+        flowTaskInteractionsList = new ArrayList<FlowTaskInteractions>();
+        taskList = new ArrayList<TasksBean>();
+        //populate the data structures from DB
+    }
+
 
     public boolean isPayrollProcessingEnabled() {
         return isPayrollProcessingEnabled;
@@ -122,7 +142,7 @@ public class ControllerEngine {
         if(node.isPayrollTask()){  // a payroll task is considered functionally complete if , its status is functionally complete && its verified
             if(node.getStatus().equals("COMPLETED") || node.getStatus().equals("SKIPPED")){
                 if(isPayrollProcessingEnabled) { // If payroll processing is enabled
-                    if (node.getVerificationFlag()) {
+                    if (node.isVerificationFlag()) {
                         returnObj = true;
                     }
                 }
@@ -173,7 +193,7 @@ public class ControllerEngine {
     //function returns true when verify action can be performed
     public boolean isVerifyActionAvailable(TasksBean currentNode){
         boolean returnObj = false;
-        if(currentNode.isPayrollTask() && isPayrollProcessingEnabled && !currentNode.getVerificationFlag()) {
+        if(currentNode.isPayrollTask() && isPayrollProcessingEnabled && !currentNode.isVerificationFlag()) {
             if (currentNode.getStatus().equals("COMPLETED") || currentNode.getStatus().equals("FUNCTIONAL_ERROR") || currentNode.getStatus().equals("SKIPPED")) {
                 returnObj = true;
             }
@@ -194,6 +214,18 @@ public class ControllerEngine {
         }
     }
 
+    private String getAvailableActionFromActionMatrix(TasksBean task, String nextTaskStatus){
+            String returnObj = "";
+            List<ActionMatrixBean> actionMatrixList = actionMatrix.get(task.getTaskType());
+            for(int tempCount=0;actionMatrixList != null && tempCount < actionMatrixList.size();tempCount ++){
+               ActionMatrixBean beanObj = actionMatrixList.get(tempCount);
+               if(beanObj.getCurrentNodeStatus().equals(task.getStatus()) && beanObj.getSucceedingNodeStatus().equals(nextTaskStatus)){
+                   returnObj= beanObj.getAvailableAction();
+               }
+            }
+            return returnObj;
+    }
+
     public List<String> getAvailableActions(TasksBean currentNode){
         List<String> returnObj = new ArrayList<String>();
         List<TasksBean> nextNodes;
@@ -205,7 +237,7 @@ public class ControllerEngine {
             nextNodes = getNextNodes(currentNode,true);
         }
         for(int tempCount=0; tempCount < nextNodes.size();tempCount ++){
-            System.out.println("Evaluating next " + nextNodes.get(tempCount).getChecklistName());
+            returnObj.add(getAvailableActionFromActionMatrix(currentNode,nextNodes.get(tempCount).getStatus()));
         }
         return  returnObj;
     }

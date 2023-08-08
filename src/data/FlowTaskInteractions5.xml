@@ -1,0 +1,26 @@
+<FlowTaskInteractions>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>001</FromFlowTaskId>
+        <ToFlowTaskId>002</ToFlowTaskId>
+    </FlowTaskInteraction>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>002</FromFlowTaskId>
+        <ToFlowTaskId>003</ToFlowTaskId>
+    </FlowTaskInteraction>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>003</FromFlowTaskId>
+        <ToFlowTaskId>004</ToFlowTaskId>
+    </FlowTaskInteraction>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>004</FromFlowTaskId>
+        <ToFlowTaskId>005</ToFlowTaskId>
+    </FlowTaskInteraction>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>005</FromFlowTaskId>
+        <ToFlowTaskId>006</ToFlowTaskId>
+    </FlowTaskInteraction>
+    <FlowTaskInteraction>
+        <FromFlowTaskId>006</FromFlowTaskId>
+        <ToFlowTaskId>007</ToFlowTaskId>
+    </FlowTaskInteraction>
+</FlowTaskInteractions>

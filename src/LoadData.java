@@ -1,7 +1,9 @@
+import beans.ActionMatrixBean;
 import beans.FlowTaskInteractions;
 import beans.TasksBean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -14,11 +16,13 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.util.Map;
+
 public class LoadData {
 
-    public static void loadTaskData(List<TasksBean> tasksBeanList){
+    public static void loadTaskData(List<TasksBean> tasksBeanList, String path){
         try {
-            File fXmlFile = new File("src/TaskList.xml");
+            File fXmlFile = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -37,6 +41,8 @@ public class LoadData {
                             .item(0).getTextContent());
                     beanObj.setBaseTaskName(eElement.getElementsByTagName("BaseTaskName")
                             .item(0).getTextContent());
+                    beanObj.setTaskType(eElement.getElementsByTagName("TaskType")
+                            .item(0).getTextContent());
                     beanObj.setPayrollTask(((eElement.getElementsByTagName("PayrollProcessingFlag")
                             .item(0).getTextContent()).equals("Y") ? true : false));
                     beanObj.setStatus(eElement.getElementsByTagName("Status")
@@ -44,6 +50,14 @@ public class LoadData {
                     if(eElement.getElementsByTagName("VerificationFlag").getLength() != 0) {
                         beanObj.setVerificationFlag(((eElement.getElementsByTagName("VerificationFlag")
                                 .item(0).getTextContent()).equals("Y") ? true : false));
+                    }
+                    if(eElement.getElementsByTagName("FlowTaskInstanceId").getLength() != 0) {
+                        beanObj.setFlowTaskInstanceId(Long.parseLong(eElement.getElementsByTagName("FlowTaskInstanceId")
+                                .item(0).getTextContent()));
+                    }
+                    if(eElement.getElementsByTagName("LegislativeDataGroupId").getLength() != 0) {
+                        beanObj.setFlowTaskInstanceId(Long.parseLong(eElement.getElementsByTagName("LegislativeDataGroupId")
+                                .item(0).getTextContent()));
                     }
                 }
                 tasksBeanList.add(beanObj);
@@ -63,9 +77,9 @@ public class LoadData {
 
 
 
-    public static void loadTaskInteractionsData(List<FlowTaskInteractions> flowTaskInteractionsList){
+    public static void loadTaskInteractionsData(List<FlowTaskInteractions> flowTaskInteractionsList, String path){
         try {
-            File fXmlFile = new File("src/FlowTaskInteractions.xml");
+            File fXmlFile = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -95,5 +109,51 @@ public class LoadData {
         }
 
     }
+
+    public static void loadActionMatrix(Map<String,List<ActionMatrixBean>> actionMatrix){
+        try {
+            File fXmlFile = new File("src/ActionMatrix.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
+            NodeList nList = doc.getElementsByTagName("Entry");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                ActionMatrixBean beanObj = new ActionMatrixBean();
+                Node nNode = nList.item(temp);
+                String taskType ="";
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    taskType = eElement.getElementsByTagName("TaskType").item(0).getTextContent();
+                    beanObj.setTaskType(taskType);
+                    beanObj.setCurrentNodeStatus(eElement.getElementsByTagName("CurrentNodeStatus")
+                            .item(0).getTextContent());
+                    beanObj.setSucceedingNodeStatus(eElement.getElementsByTagName("SucceedingNodeStatus")
+                            .item(0).getTextContent());
+                    beanObj.setAvailableAction(eElement.getElementsByTagName("AvailableAction")
+                            .item(0).getTextContent());
+                }
+                if(actionMatrix.containsKey(taskType)){
+                    actionMatrix.get(taskType).add(beanObj);
+                }
+                else{
+                    List<ActionMatrixBean> actionMatrixList = new ArrayList<>();
+                    actionMatrixList.add(beanObj);
+                    actionMatrix.put(taskType,actionMatrixList);
+                }
+            }
+        }
+        catch(ParserConfigurationException e1){
+            e1.printStackTrace();
+        }
+        catch(SAXException e2){
+            e2.printStackTrace();
+        }
+        catch(IOException e3){
+            e3.printStackTrace();
+        }
+
+    }
+
 
 }

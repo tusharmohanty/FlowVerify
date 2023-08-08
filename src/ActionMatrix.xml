@@ -1,8 +1,38 @@
 <ActionMatrix>
     <Entry>
         <TaskType>PUYGEN</TaskType>
-        <CurrentNodeStatus></CurrentNodeStatus>
-        <SucceedingNodeStatus></SucceedingNodeStatus>
-        <AvailableAction></AvailableAction>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
+        <AvailableAction>MARK_FOR_RETRY</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>MARKED_FOR_RETRY</CurrentNodeStatus>
+        <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
+        <AvailableAction>RETRY</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>MARKED_FOR_RETRY</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>RETRY</AvailableAction>
     </Entry>
 </ActionMatrix>

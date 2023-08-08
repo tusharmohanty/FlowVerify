@@ -6,6 +6,8 @@
         <ChecklistName>Calculate Prepayments</ChecklistName>
         <PayrollProcessingFlag>Y</PayrollProcessingFlag>
         <Status>NOT_STARTED</Status>
+        <FlowTaskInstanceId>006</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>002</FlowTaskId>
@@ -15,6 +17,8 @@
         <PayrollProcessingFlag>Y</PayrollProcessingFlag>
         <VerificationFlag>N</VerificationFlag>
         <Status>COMPLETED</Status>
+        <FlowTaskInstanceId>002</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>003</FlowTaskId>
@@ -23,6 +27,8 @@
         <ChecklistName>Run Gross To Net report</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
         <Status>NOT_STARTED</Status>
+        <FlowTaskInstanceId>003</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>004</FlowTaskId>
@@ -31,6 +37,8 @@
         <ChecklistName>Run Balance Exception report</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
         <Status>COMPLETED</Status>
+        <FlowTaskInstanceId>004</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>005</FlowTaskId>
@@ -38,7 +46,9 @@
         <BaseTaskName>RUN_CUSTOM_EXTRACT</BaseTaskName>
         <ChecklistName>Run Custom Extract</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
-        <Status>SKIPPED</Status>
+        <Status>ROLLEDBACK</Status>
+        <FlowTaskInstanceId>005</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>001</FlowTaskId>
@@ -47,6 +57,8 @@
         <ChecklistName>Start Flow</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
         <Status>COMPLETED</Status>
+        <FlowTaskInstanceId>001</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
     <FlowTaskInstance>
         <FlowTaskId>007</FlowTaskId>
@@ -55,5 +67,7 @@
         <ChecklistName>End Flow</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
         <Status></Status>
+        <FlowTaskInstanceId>007</FlowTaskInstanceId>
+        <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
 </FlowTaskInstances>

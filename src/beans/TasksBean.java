@@ -1,9 +1,9 @@
 package beans;
 
 public class TasksBean {
-    String checklistName,baseTaskName, status;
+    String checklistName,baseTaskName, status, taskType;
     boolean isPayrollTask,verificationFlag= false;
-    Long flowTaskId,baseFlowTaskId;
+    Long flowTaskId,baseFlowTaskId,flowTaskInstanceId,ldgId;
 
     public String getChecklistName() {
 
@@ -15,9 +15,6 @@ public class TasksBean {
         return status;
     }
 
-    public boolean getVerificationFlag() {
-        return verificationFlag;
-    }
 
     public void setVerificationFlag(boolean verificationFlag) {
         this.verificationFlag = verificationFlag;
@@ -61,6 +58,34 @@ public class TasksBean {
 
     public void setBaseFlowTaskId(Long baseTaskId) {
         this.baseFlowTaskId = baseTaskId;
+    }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
+    public boolean isVerificationFlag() {
+        return verificationFlag;
+    }
+
+    public Long getFlowTaskInstanceId() {
+        return flowTaskInstanceId;
+    }
+
+    public void setFlowTaskInstanceId(Long flowTaskInstanceId) {
+        this.flowTaskInstanceId = flowTaskInstanceId;
+    }
+
+    public Long getLdgId() {
+        return ldgId;
+    }
+
+    public void setLdgId(Long ldgId) {
+        this.ldgId = ldgId;
     }
 
     public String toString(){
