@@ -2,37 +2,135 @@
     <Entry>
         <TaskType>PUYGEN</TaskType>
         <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
-        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
-        <AvailableAction>ROLLBACK</AvailableAction>
-    </Entry>
-    <Entry>
-        <TaskType>PUYGEN</TaskType>
-        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
-        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
-        <AvailableAction>SUBMIT</AvailableAction>
-    </Entry>
-    <Entry>
-        <TaskType>PUYGEN</TaskType>
-        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
-        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
-        <AvailableAction>SUBMIT</AvailableAction>
-    </Entry>
-    <Entry>
-        <TaskType>PUYGEN</TaskType>
-        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
         <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
         <AvailableAction>MARK_FOR_RETRY</AvailableAction>
     </Entry>
     <Entry>
         <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>MARK_FOR_RETRY</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>MARK_FOR_RETRY</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>COMPLETED</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ERRORED</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ERRORED</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ERRORED</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <!--Debatable entry-->
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ERRORED</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <!--Debatable entry-->
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>FUNCTIONAL_ERROR</CurrentNodeStatus>
+        <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
+        <AvailableAction>RERUN</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>FUNCTIONAL_ERROR</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>RERUN</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>FUNCTIONAL_ERROR</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>FUNCTIONAL_ERROR</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>RERUN</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>FUNCTIONAL_ERROR</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>ROLLBACK</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>INCOMPLETE</CurrentNodeStatus>
+        <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>INCOMPLETE</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>INCOMPLETE</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
         <CurrentNodeStatus>MARKED_FOR_RETRY</CurrentNodeStatus>
         <SucceedingNodeStatus>MARKED_FOR_RETRY</SucceedingNodeStatus>
-        <AvailableAction>RETRY</AvailableAction>
+        <AvailableAction>RERUN</AvailableAction>
     </Entry>
     <Entry>
         <TaskType>PUYGEN</TaskType>
         <CurrentNodeStatus>MARKED_FOR_RETRY</CurrentNodeStatus>
         <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
-        <AvailableAction>RETRY</AvailableAction>
+        <AvailableAction>RERUN</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>MARKED_FOR_RETRY</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>RERUN</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
+        <SucceedingNodeStatus>NOT_STARTED</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
+    </Entry>
+    <Entry>
+        <TaskType>PUYGEN</TaskType>
+        <CurrentNodeStatus>ROLLEDBACK</CurrentNodeStatus>
+        <SucceedingNodeStatus>ROLLEDBACK</SucceedingNodeStatus>
+        <AvailableAction>SUBMIT</AvailableAction>
     </Entry>
 </ActionMatrix>

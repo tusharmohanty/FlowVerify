@@ -37,6 +37,10 @@ public class ControllerEngine {
         //populate the data structures from DB
     }
 
+    public ControllerEngine (){
+        this.isPayrollProcessingEnabled = true;
+        // load Action Matrix
+    }
 
     public boolean isPayrollProcessingEnabled() {
         return isPayrollProcessingEnabled;
@@ -76,14 +80,6 @@ public class ControllerEngine {
     }
 
 
-    //Given a flow task instance , method returns true if its a start task
-    private  boolean isStartTask(TasksBean node){
-        boolean returnObj = false;
-        if(node.getBaseTaskName().equals("START_FLOW")){
-            returnObj = true;
-        }
-        return  returnObj;
-    }
 
     //Given a  a current flow task instance , method returns the next flow task instance
     private   List<TasksBean> getNextNodes(TasksBean currentNode , boolean forwardFlag){
@@ -111,6 +107,51 @@ public class ControllerEngine {
         return returnObj;
     }
 
+
+    /**
+     * Function returns the next non skipped task in the execution chain
+     * **/
+    public ArrayList<TasksBean> getNonSkippedNextNodes(TasksBean currentNode, boolean forwardFlag){
+           ArrayList<TasksBean> returnNodeList = new ArrayList<TasksBean>();
+           ArrayList<TasksBean> nextNodeList = (ArrayList<TasksBean>) getNextNodes(currentNode,forwardFlag);
+           for(int tempCount=0;tempCount < nextNodeList.size();tempCount++){
+               TasksBean nextNode =nextNodeList.get(tempCount);
+               if(nextNode.getStatus().equals("SKIPPED")){
+                   returnNodeList.addAll(getNonSkippedNextNodes(nextNode,forwardFlag));
+               }
+               else{
+                   returnNodeList.add(nextNode);
+               }
+           }
+           return  returnNodeList;
+    }
+
+    /**
+     * Function returns the next non skipped, non incomplete task in the execution chain
+     * **/
+    public ArrayList<TasksBean> getNonSkippedNonIncompleteNextNodes(TasksBean currentNode, boolean forwardFlag){
+        ArrayList<TasksBean> returnNodeList = new ArrayList<TasksBean>();
+        ArrayList<TasksBean> nextNodeList = (ArrayList<TasksBean>) getNextNodes(currentNode,forwardFlag);
+        for(int tempCount=0;tempCount < nextNodeList.size();tempCount++){
+            TasksBean nextNode =nextNodeList.get(tempCount);
+            if(nextNode.getStatus().equals("SKIPPED") || nextNode.getStatus().equals("INCOMPLETE")){
+                returnNodeList.addAll(getNonSkippedNextNodes(nextNode,forwardFlag));
+            }
+            else{
+                returnNodeList.add(nextNode);
+            }
+        }
+        return  returnNodeList;
+    }
+
+    /**
+     * If Flow Instance status = COMPLETED , can perform bulk rollback = true
+     * else there are certain status which if present , bulk rollback cannot be performed
+     * if these checks say that bulk rollback can be performed and fi.status is not completed
+     * else we execute a VO with flow instance id and if the VO doesnt have data return false*/
+    public boolean canPerformBulkRollback(){
+        return true;
+    }
     // Given a task list , flow task interactions list and a current node , method will traverse the flow task
     // interations till it encounters an end task.
     public  void traverse(TasksBean currentNode, boolean forwardFlag ){
@@ -123,11 +164,30 @@ public class ControllerEngine {
                 }
             }
             else{ //else stop when you encounter start flow
-                if (!isStartTask(node)) {
+                if (!node.isStartFlowTaskInstance()) {
                     traverse(node, forwardFlag);
                 }
             }
         }
+    }
+
+
+    public  List<TasksBean> getStartNodes(boolean forwardFlag){
+        List<TasksBean> returnList = new ArrayList<TasksBean>();
+        for(int tempCount=0;tempCount < taskList.size();tempCount ++) {
+            TasksBean node = taskList.get(tempCount);
+            if (forwardFlag){
+                if (node.isEndFlowTaskInstance()) {
+                    returnList.add(node);
+                }
+            }
+            else{ //else stop when you encounter start flow
+                if (node.isStartFlowTaskInstance()) {
+                    returnList.add(node);
+                }
+            }
+        }
+        return returnList;
     }
 
     public  void traverse(boolean forwardFlag){
@@ -135,40 +195,10 @@ public class ControllerEngine {
     }
 
 
-    // A task in Completed or Skipped status is considered functionally complete from prereq status check perspective
-    private boolean isTaskFunctionallyComplete(TasksBean node){
-        boolean returnObj = false;
-
-        if(node.isPayrollTask()){  // a payroll task is considered functionally complete if , its status is functionally complete && its verified
-            if(node.getStatus().equals("COMPLETED") || node.getStatus().equals("SKIPPED")){
-                if(isPayrollProcessingEnabled) { // If payroll processing is enabled
-                    if (node.isVerificationFlag()) {
-                        returnObj = true;
-                    }
-                }
-                else{
-                    returnObj = true;
-                }
-            }
-        }
-        else{ // if its not a payroll task , just look at status
-            if(node.getStatus().equals("COMPLETED") || node.getStatus().equals("SKIPPED")) {
-                returnObj = true;
-            }
-        }
-
-        return returnObj;
-    }
 
 
-    // A task in IN_PROGRESS, PUBLISHED, CHILD_JOB_SUBMITTED, CHILD_JOB_COMPLETED or post processing flag is set
-    private boolean isTaskFunctionallyInProgress(TasksBean node){
-        boolean returnObj = false;
-            if(node.getStatus().equals("IN_PROGRESS") || node.getStatus().equals("PUBLISHED")) {
-                returnObj = true;
-            }
-        return returnObj;
-    }
+
+
 
 
     private boolean isAnyPrereqPayrollTaskVerificationPending(TasksBean currentNode){
@@ -176,7 +206,7 @@ public class ControllerEngine {
         List<TasksBean> nextNodes = getNextNodes(currentNode,false);
         for(int tempCount=0;tempCount < nextNodes.size();tempCount ++){
             TasksBean node =nextNodes.get(tempCount);
-            if(isTaskFunctionallyComplete(node)){ // if its functionally complete , keep looking
+            if(node.isTaskFunctionallyComplete(isPayrollProcessingEnabled)){ // if its functionally complete , keep looking
                 returnObj = isAnyPrereqPayrollTaskVerificationPending(node);
                 if(returnObj){
                     break;
@@ -249,7 +279,7 @@ public class ControllerEngine {
                 if (node.getStatus().equals("NOT_STARTED")) {
                     nodeList.add(node);
                 }
-                else if (isTaskFunctionallyInProgress(node)){
+                else if (node.isTaskFunctionallyInProgress()){
                     return;
                 }
                 else {
@@ -285,15 +315,20 @@ public class ControllerEngine {
                }
            }
            else{ //if its not a payroll task , just check the previous task for prereq completeness
-               returnObj = isTaskFunctionallyComplete(currentNode);
+               returnObj = currentNode.isTaskFunctionallyComplete(isPayrollProcessingEnabled);
            }
         }
         else{
             //if its not a payroll task , just check the previous task for prereq completeness
-            returnObj = isTaskFunctionallyComplete(currentNode);
+            returnObj = currentNode.isTaskFunctionallyComplete(isPayrollProcessingEnabled);
 
         }
         return  returnObj;
     }
+
+    public void setBaseFlowTaskId(long baseFlowTaskId, Long ldgId, String lc){
+        //load interaction data
+    }
+
 
 }

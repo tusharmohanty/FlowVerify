@@ -2,20 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e1d8a6f-dd48-455f-9cae-3b6f44f76b4e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/FlowTaskInteractions5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/TaskList5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ControllerEngineDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/BasicActionMatrixTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ActionMatrix.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ActionMatrix.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ControllerEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ControllerEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoadData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainTestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainTestClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TaskList.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/TaskList.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/beans/TasksBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beans/TasksBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/TaskList5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/TaskList5.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,6 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2TTgnQ9X38MMH9Re8nJpxjpJtGz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -41,9 +49,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -95,7 +103,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ControllerEngine.java</url>
-          <line>287</line>
+          <line>317</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -18,7 +18,7 @@ public class MainTestClass {
         LoadData.loadTaskInteractionsData(flowTaskInteractionsList,"src/data/FlowTaskInteractions5.xml");
         LoadData.loadTaskData(tasksBeanList,"src/data/TaskList5.xml");
         ControllerEngine controllerEngine = new ControllerEngine(tasksBeanList,flowTaskInteractionsList,true);
-        System.out.println(controllerEngine.getAvailableActions(controllerEngine.getTask(5l)));
+        System.out.println(controllerEngine.getNonSkippedNextNodes(controllerEngine.getTask(1l),true));
     }
 
 

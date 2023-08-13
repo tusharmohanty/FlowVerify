@@ -100,5 +100,71 @@ public class TasksBean {
         return returnString;
     }
 
+    public boolean isNodeComplete(){
+        boolean returnFlag = false;
+        if(this.status.equals("COMPLETED")){
+            returnFlag = true;
+        }
+        return returnFlag;
+    }
+
+    // A task in Completed or Skipped status is considered functionally complete from prereq status check perspective
+    public boolean isTaskFunctionallyComplete(boolean isPayrollProcessingEnabled){
+        boolean returnObj = false;
+
+        if(isPayrollTask()){  // a payroll task is considered functionally complete if , its status is functionally complete && its verified
+            if(getStatus().equals("COMPLETED") || getStatus().equals("SKIPPED")){
+                if(isPayrollProcessingEnabled) { // If payroll processing is enabled
+                    if (isVerificationFlag()) {
+                        returnObj = true;
+                    }
+                }
+                else{
+                    returnObj = true;
+                }
+            }
+        }
+        else{ // if its not a payroll task , just look at status
+            if(getStatus().equals("COMPLETED") || getStatus().equals("SKIPPED")) {
+                returnObj = true;
+            }
+        }
+
+        return returnObj;
+    }
+
+    // A task in IN_PROGRESS, PUBLISHED, CHILD_JOB_SUBMITTED, CHILD_JOB_COMPLETED or post processing flag is set
+    public boolean isTaskFunctionallyInProgress(){
+        boolean returnObj = false;
+        if(getStatus().equals("IN_PROGRESS") || getStatus().equals("PUBLISHED")) {
+            returnObj = true;
+        }
+        return returnObj;
+    }
+
+    // A task in SKIPPED
+    public boolean isTaskSkipped(){
+        boolean returnObj = false;
+        if(getStatus().equals("SKIPPED")) {
+            returnObj = true;
+        }
+        return returnObj;
+    }
+
+    public boolean isStartFlowTaskInstance(){
+        boolean returnObj = false;
+        if("START_FLOW".equals(getTaskType())){
+            returnObj = true;
+        }
+        return returnObj;
+    }
+
+    public boolean isEndFlowTaskInstance(){
+        boolean returnObj = false;
+        if("END_FLOW".equals(getTaskType())){
+            returnObj = true;
+        }
+        return returnObj;
+    }
 
 }

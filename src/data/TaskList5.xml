@@ -16,7 +16,7 @@
         <ChecklistName>Calculate Payroll</ChecklistName>
         <PayrollProcessingFlag>Y</PayrollProcessingFlag>
         <VerificationFlag>N</VerificationFlag>
-        <Status>COMPLETED</Status>
+        <Status>SKIPPED</Status>
         <FlowTaskInstanceId>002</FlowTaskInstanceId>
         <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
@@ -26,7 +26,7 @@
         <BaseTaskName>RUN_GROSS_TO_NET_REPORT</BaseTaskName>
         <ChecklistName>Run Gross To Net report</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
-        <Status>NOT_STARTED</Status>
+        <Status>SKIPPED</Status>
         <FlowTaskInstanceId>003</FlowTaskInstanceId>
         <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
@@ -36,7 +36,7 @@
         <BaseTaskName>RUN_BALANCE_EXCEPTION_REPORT</BaseTaskName>
         <ChecklistName>Run Balance Exception report</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
-        <Status>COMPLETED</Status>
+        <Status>SKIPPED</Status>
         <FlowTaskInstanceId>004</FlowTaskInstanceId>
         <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
@@ -46,7 +46,7 @@
         <BaseTaskName>RUN_CUSTOM_EXTRACT</BaseTaskName>
         <ChecklistName>Run Custom Extract</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
-        <Status>ROLLEDBACK</Status>
+        <Status>SKIPPED</Status>
         <FlowTaskInstanceId>005</FlowTaskInstanceId>
         <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
@@ -66,7 +66,7 @@
         <BaseTaskName>END_FLOW</BaseTaskName>
         <ChecklistName>End Flow</ChecklistName>
         <PayrollProcessingFlag>N</PayrollProcessingFlag>
-        <Status></Status>
+        <Status>NOT_STARTED</Status>
         <FlowTaskInstanceId>007</FlowTaskInstanceId>
         <TaskType>PUYGEN</TaskType>
     </FlowTaskInstance>
