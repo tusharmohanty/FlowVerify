@@ -330,5 +330,31 @@ public class ControllerEngine {
         //load interaction data
     }
 
+    private void getNonSkippedNextNodes(TasksBean currentNode, List<TasksBean> nodeList, boolean mode){
+        List<TasksBean> nextNodes = getNextNodes(currentNode,mode);
+        for(int tempCount =0; tempCount < nextNodes.size();tempCount ++){
+            TasksBean node = nextNodes.get(tempCount);
+            if(node.isPayrollTask()){
+                nodeList.add(node);
+            }
+            else{
+                getNextPayrollTask(node,nodeList,mode);
+            }
+        }
+    }
+
+    private void getNonSkippedNonIncompleteNextNodes(TasksBean currentNode, List<TasksBean> nodeList, boolean mode){
+        List<TasksBean> nextNodes = getNextNodes(currentNode,mode);
+        for(int tempCount =0; tempCount < nextNodes.size();tempCount ++){
+            TasksBean node = nextNodes.get(tempCount);
+            if(node.isPayrollTask()){
+                nodeList.add(node);
+            }
+            else{
+                getNextPayrollTask(node,nodeList,mode);
+            }
+        }
+    }
+
 
 }
